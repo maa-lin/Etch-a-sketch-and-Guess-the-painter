@@ -2,18 +2,19 @@ const btn = document.createElement("button");
 btn.innerHTML = "Nytt fält";
 document.getElementById("app").appendChild(btn);
 
-//input från användaren, hur många rutor som ska skapas
-// const getInput = () => {
-//   const input = prompt(
-//     "Välj hur många rutor ditt fält ska bestå av, exempel '12' för att få ett fält som är 12x12 stort."
-//   );
-//   return input;
-// };
+// input från användaren, hur många rutor som ska skapas
+
+const getInput = () => {
+  const input = prompt(
+    "Välj hur många rutor ditt fält ska bestå av, exempel '12' för att få ett fält som är 12x12 stort."
+  );
+  return input;
+};
 
 //anropar createSquares och tar bort föregående
 btn.addEventListener("click", () => {
-  // const size = getInput();
-  const size = 25;
+  const size = getInput();
+  // const size = 25;
 
   if (document.contains(document.getElementById("container"))) {
     document.getElementById("container").remove();
@@ -27,7 +28,7 @@ const createSquares = (size) => {
   container.id = "container";
   document.getElementById("app").appendChild(container);
 
-  container.style.backgroundImage = randomImg();
+  // container.style.backgroundImage = randomImg(); //bakgrundbild
 
   let sqrHeight = (450 / size).toString();
   let sqrWidth = sqrHeight;
@@ -45,8 +46,8 @@ const createSquares = (size) => {
       row.appendChild(square);
 
       square.addEventListener("mouseover", () => {
-        // square.style.backgroundColor = randomColor();
-        square.style.opacity = (parseFloat(square.style.opacity) || 1) - 0.3; //0) + 0.3 -> för att öka opacitet
+        square.style.backgroundColor = randomColor();
+        square.style.opacity = (parseFloat(square.style.opacity) || 0) + 0.3;
       });
     }
   }
@@ -62,15 +63,16 @@ const randomColor = () => {
 };
 
 //funktion som ger en random bild
-const randomImg = () => {
-  const images = [
-    "assets/carl_070.jpg",
-    "assets/monet.jpg",
-    "assets/van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
-    "assets/the-scream.jpg",
-    "assets/1665_Girl_with_a_Pearl_Earring.jpg",
-  ];
-  const random = Math.floor(Math.random() * images.length);
 
-  return "url(" + images[random] + ")";
-};
+// const randomImg = () => {
+//   const images = [
+//     "assets/carl_070.jpg",
+//     "assets/monet.jpg",
+//     "assets/van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+//     "assets/the-scream.jpg",
+//     "assets/1665_Girl_with_a_Pearl_Earring.jpg",
+//   ];
+//   const random = Math.floor(Math.random() * images.length);
+
+//   return "url(" + images[random] + ")";
+// };
